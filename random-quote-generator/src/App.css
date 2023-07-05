@@ -39,6 +39,15 @@ body {
   bottom: 0;
 }
 
+.button-strip {
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  margin-left: 40px;
+}
+
 .quotation-box {
   min-height: calc(100vh - 39px - 39px - 45px);
   margin-top: 120px;

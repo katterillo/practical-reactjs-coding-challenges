@@ -4,12 +4,14 @@ import { ReactComponent as Button } from "../src/assets/icons/button.svg"
 import { ReactComponent as Quotation } from "../src/assets/icons/quotation.svg"
 import { ReactComponent as Twitter } from "../src/assets/icons/twitter.svg"
 import { ReactComponent as Whatsapp } from "../src/assets/icons/whatsapp.svg"
+import { ReactComponent as EmptyHeart } from "../src/assets/icons/emptyHeart.svg"
 import "./App.css"
 import axios from 'axios';
 import { Quotes, shuffle } from './utils';
 
 function App() {
   const [quoteList, setQuoteList] = useState<Quotes[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
 
   const getAllQuotes = () => {
@@ -52,6 +54,14 @@ function App() {
     }
   }
 
+  const favorite = () => {
+    if (!favorites.includes(quoteList[index].quote)) {
+      setFavorites([...favorites, quoteList[index].quote]);
+      console.log("new fave: " + quoteList[index].quote);
+      console.log("favorites: ", [...favorites, quoteList[index].quote]);
+    }
+  }
+
   return (
     <>
       <header>
@@ -66,9 +76,10 @@ function App() {
                 <p>{quoteList[index].quote}</p> <span>- {quoteList[index].author}</span>
               </div>
               <div className="bottom-navigation">
-                <div>
+                <div className="button-strip">
                   <Button className={classnames("rotate cp")} onClick={decrement} />
                   <Button className="cp" onClick={increment} />
+                  <EmptyHeart className="heart" onClick={favorite} />
                 </div>
                 <div className="share">
                   <span>Share At:</span>
