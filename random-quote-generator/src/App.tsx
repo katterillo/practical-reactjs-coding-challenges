@@ -6,29 +6,13 @@ import { ReactComponent as Twitter } from "../src/assets/icons/twitter.svg"
 import { ReactComponent as Whatsapp } from "../src/assets/icons/whatsapp.svg"
 import "./App.css"
 import axios from 'axios';
-
-interface Quotation {
-  quote: string;
-  author: string;
-}
+import { Quotes, shuffle } from './utils';
 
 function App() {
-  const [quoteList, setQuoteList] = useState<Quotation[]>([]);
+  const [quoteList, setQuoteList] = useState<Quotes[]>([]);
   const [index, setIndex] = useState(0);
-  useEffect(() => {
-    useQuoteFetcher();
-  }, [])
 
-  const shuffle = (array: Quotation[]) => {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-  };
-
-  const useQuoteFetcher = () => {
+  const getAllQuotes = () => {
     axios.get('http://localhost:4000/quotes')
       .then((response) => {
         const allQuotes = response.data;
@@ -39,11 +23,15 @@ function App() {
       .catch(error => console.error());
   }
 
+  useEffect(() => {
+    getAllQuotes();
+  }, [])
+
   const increment = () => {
     const newIndex = index + 1;
     if (newIndex > quoteList.length - 1) {
       setQuoteList([]);
-      useQuoteFetcher();
+      getAllQuotes();
       setIndex(0);
       console.log(0);
     }
