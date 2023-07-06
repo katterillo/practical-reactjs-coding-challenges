@@ -8,6 +8,7 @@ import { ReactComponent as EmptyHeart } from "../src/assets/icons/emptyHeart.svg
 import "./App.css"
 import axios from 'axios';
 import { Quotes, shuffle } from './utils';
+import Favorites from './Favorites';
 
 function App() {
   const [quoteList, setQuoteList] = useState<Quotes[]>([]);
@@ -90,6 +91,9 @@ function App() {
                     <Whatsapp title="Post this quote on WhatsApp!" className="cp" />
                   </a>
                 </div>
+              </div>
+              <div>
+                <Favorites favorites={favorites} quoteList={quoteList} />
               </div>
             </>
             : <p> Loading… </p>}
