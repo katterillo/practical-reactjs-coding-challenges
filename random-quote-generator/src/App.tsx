@@ -78,7 +78,7 @@ function App() {
               </div>
               <div className="bottom-navigation">
                 <div className="button-strip">
-                  <Button className={classnames("rotate cp")} onClick={decrement} />
+                  <Button className={classnames("rotate cp")} onClick={decrement} stroke={index > 0 ? "" : "gray"} />
                   <Button className="cp" onClick={increment} />
                   <EmptyHeart className="heart" onClick={favorite} />
                 </div>
