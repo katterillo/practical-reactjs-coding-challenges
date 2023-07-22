@@ -48,9 +48,13 @@ body {
   margin-left: 40px;
 }
 
+.favorite-quotations-box {
+  margin: 40px 0px 39px 0px;
+}
+
 .quotation-box {
   min-height: calc(100vh - 39px - 39px - 45px);
-  margin-top: 120px;
+  margin: 120px 0px 80px 0px;
 }
 
 .quote {
